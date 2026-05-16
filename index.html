@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaultex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050507;
+      --ink: #e8e4f0;
+      --muted: rgba(232,228,240,0.4);
+      --card-bg: rgba(255,255,255,0.03);
+      --card-border: rgba(255,255,255,0.06);
+      --hover-border: rgba(255,255,255,0.18);
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(90,60,180,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 0 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    nav {
+      padding: 36px 0 0;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .logo-dot { color: rgba(140,100,255,0.9); }
+
+    .tagline {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 0 40px;
+      gap: 16px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 14vw, 160px);
+      line-height: 0.9;
+      letter-spacing: 4px;
+      color: var(--ink);
+      animation: fadeIn 1s ease both;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 360px;
+      line-height: 1.7;
+      animation: fadeIn 1s 0.15s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding-bottom: 80px;
+      animation: fadeIn 1s 0.25s ease both;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--hover-border);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.05);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card-inventory::before { background: radial-gradient(ellipse at top left, rgba(80,200,140,0.08), transparent 60%); }
+    .card-marvel::before    { background: radial-gradient(ellipse at top left, rgba(220,50,50,0.08), transparent 60%); }
+    .card-notes::before     { background: radial-gradient(ellipse at top left, rgba(200,80,255,0.08), transparent 60%); }
+    .card-tools::before     { background: radial-gradient(ellipse at top left, rgba(255,180,50,0.08), transparent 60%); }
+    .card-collage::before   { background: radial-gradient(ellipse at top left, rgba(255,100,150,0.08), transparent 60%); }
+
+    .card-icon { font-size: 28px; line-height: 1; }
+
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 1.5px;
+      color: var(--ink);
+    }
+
+    .card-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-arrow {
+      font-size: 18px;
+      color: var(--muted);
+      align-self: flex-end;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .card:hover .card-arrow { transform: translate(3px, -3px); color: var(--ink); }
+
+    .card-tag {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+    }
+
+    .card-wide { grid-column: span 2; }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px 0 32px;
+      font-size: 12px;
+      color: rgba(232,228,240,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 700px) {
+      .page { padding: 0 20px; }
+      .cards { grid-template-columns: 1fr; }
+      .card-wide { grid-column: span 1; }
+      .hero-title { font-size: 80px; }
+    }
+    @media (max-width: 900px) and (min-width: 701px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .card-wide { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <nav>
+    <a class="logo" href="#">VAULTEX<span class="logo-dot">.</span></a>
+
+  </nav>
+
+  <main>
+    <div class="hero">
+      <p class="hero-eyebrow">Welcome</p>
+      <h1 class="hero-title">EXPLORE</h1>
+      <p class="hero-sub">A collection of projects, interests, and tools — all in one place.</p>
+    </div>
+
+    <div class="cards">
+
+      <a class="card card-inventory card-wide" href="https://inventory.vaultex.me">
+        <span class="card-tag">Live</span>
+        <div class="card-icon">📦</div>
+        <div class="card-title">My Inventory</div>
+        <div class="card-desc">Track components, modules, and gear. Always know what you have and where it is — searchable, fast, always online.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="card card-marvel" href="#">
+        <span class="card-tag">Fan</span>
+        <div class="card-icon">🛡️</div>
+        <div class="card-title">Marvel Fan</div>
+        <div class="card-desc">Characters, timelines, comics, and lore — everything Marvel in one place.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="card card-collage" href="https://collage.vaultex.me">
+        <div class="card-icon">🖼️</div>
+        <div class="card-title">Collage</div>
+        <div class="card-desc">A shared photo wall — upload, react, and explore moments together.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="card card-about" href="#">
+        <div class="card-icon">👤</div>
+        <div class="card-title">About</div>
+        <div class="card-desc">Mechanical Engineering student at CWIT, Pune. Builder of things.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+    </div>
+  </main>
+</div>
+
+<footer>© 2026 Vaultex · jinayshah2008 · vaultex.me</footer>
+
+</body>
+</html>
