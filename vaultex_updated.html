@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaultex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#050507;--ink:#e8e4f0;--muted:rgba(232,228,240,.45);
+--card-bg:rgba(255,255,255,.03);--card-border:rgba(255,255,255,.06);--hover:rgba(255,255,255,.18)}
+body{font-family:Outfit,sans-serif;background:var(--bg);color:var(--ink)}
+body:before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.page{max-width:1100px;margin:auto;padding:0 40px}
+.logo{font-family:'Bebas Neue';font-size:28px;padding:36px 0;display:inline-block;color:#fff;text-decoration:none}
+.hero{text-align:center;padding:40px 0 60px}
+.hero h1{font-family:'Bebas Neue';font-size:clamp(72px,14vw,160px);line-height:.9}
+.hero p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-bottom:70px}
+.card{position:relative;background:var(--card-bg);border:1px solid var(--card-border);border-radius:20px;padding:30px;color:#fff;text-decoration:none;display:flex;flex-direction:column;gap:12px;transition:.25s;overflow:hidden}
+.card:hover{transform:translateY(-4px);border-color:var(--hover)}
+.card:before{content:'';position:absolute;inset:0;opacity:0;transition:.3s}
+.card:hover:before{opacity:1}
+.card-wide{grid-column:span 2}
+.card-tag{position:absolute;top:18px;right:18px;font-size:10px;border:1px solid var(--card-border);padding:4px 10px;border-radius:999px;color:var(--muted)}
+.card-title{font-family:'Bebas Neue';font-size:28px}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;flex:1}
+.card-arrow{align-self:flex-end}
+.card-host:before{background:radial-gradient(circle at top left,rgba(90,160,255,.12),transparent 60%)}
+.card-inventory:before{background:radial-gradient(circle at top left,rgba(80,200,140,.12),transparent 60%)}
+.card-marvel:before{background:radial-gradient(circle at top left,rgba(220,50,50,.12),transparent 60%)}
+.card-collage:before{background:radial-gradient(circle at top left,rgba(255,120,160,.12),transparent 60%)}
+.card-dino{border:1px solid rgba(130,255,90,.45)}
+.card-dino:before{background:radial-gradient(circle at top left,rgba(110,255,120,.15),transparent 60%)}
+footer{text-align:center;padding:25px;color:#666}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.card-wide{grid-column:span 2}}
+@media(max-width:700px){.page{padding:0 20px}.cards{grid-template-columns:1fr}.card-wide{grid-column:span 1}}
+</style>
+</head>
+<body>
+<div class="page">
+<a class="logo" href="#">VAULTEX<span style="color:#8c64ff">.</span></a>
+<div class="hero">
+<p>Welcome</p>
+<h1>EXPLORE</h1>
+<p>A collection of projects, interests, and tools — all in one place.</p>
+</div>
+
+<div class="cards">
+<a class="card card-host card-wide" href="https://host.vaultex.me">
+<span class="card-tag">Live</span><div style="font-size:28px">🚀</div>
+<div class="card-title">Vaultex Host</div>
+<div class="card-desc">Drop your HTML, get a live link. Free static site hosting with custom addresses, analytics, and more.</div>
+<div class="card-arrow">↗</div></a>
+
+<a class="card card-inventory card-wide" href="https://inventory.vaultex.me">
+<span class="card-tag">Live</span><div style="font-size:28px">📦</div>
+<div class="card-title">My Inventory</div>
+<div class="card-desc">Track components, modules, and gear. Always know what you have and where it is.</div>
+<div class="card-arrow">↗</div></a>
+
+<a class="card card-marvel" href="https://nittyaa.vaultex.me">
+<span class="card-tag">Fan</span><div style="font-size:28px">🛡️</div>
+<div class="card-title">Marvel Fan</div>
+<div class="card-desc">Characters, timelines, comics, and lore — everything Marvel in one place.</div>
+<div class="card-arrow">↗</div></a>
+
+<a class="card card-dino" href="https://dinosaurs.vaultex.me">
+<span class="card-tag">NEW</span>
+<div style="font-size:28px">🦖</div>
+<div class="card-title">DINOSAURS</div>
+<div class="card-desc">Species, eras, fossils, and extinction timelines — explore the prehistoric world in one place.</div>
+<div class="card-arrow">↗</div>
+</a>
+
+<a class="card card-collage" href="https://collage.vaultex.me">
+<div style="font-size:28px">🖼️</div>
+<div class="card-title">Collage</div>
+<div class="card-desc">A shared photo wall — upload, react, and explore moments together.</div>
+<div class="card-arrow">↗</div></a>
+
+<a class="card" href="#">
+<div style="font-size:28px">👤</div>
+<div class="card-title">About</div>
+<div class="card-desc">Mechanical Engineering student at CWIT, Pune. Builder of things.</div>
+<div class="card-arrow">↗</div></a>
+
+</div>
+</div>
+<footer>© 2026 Vaultex · jinayshah2008 · vaultex.me</footer>
+</body></html>
